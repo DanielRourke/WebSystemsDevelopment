@@ -8,4 +8,4 @@
 
 <img src="~/images/@(ViewData["Name"]).jpg" />
 
-<h3>Total Price: $@ViewData["Price"]</h3>
+<h3>Total Price: @string.Format("{0:C}", ViewData["Price"])</h3>
