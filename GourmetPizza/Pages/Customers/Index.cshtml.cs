@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using GourmetPizza.Data;
 using GourmetPizza.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GourmetPizza.Pages.Customers
 {
@@ -21,9 +22,20 @@ namespace GourmetPizza.Pages.Customers
 
         public IList<Customer> Customer { get;set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+
         public async Task OnGetAsync()
         {
-            Customer = await _context.Customer.ToListAsync();
+            var customers = from c in _context.Customer
+                            select c;
+            if(!string.IsNullOrEmpty(SearchString))
+            {
+                customers = customers.Where(s => s.FamilyName.Contains(SearchString) || s.GivenName.Contains(SearchString));
+            }
+
+
+            Customer = await customers.ToListAsync();
         }
     }
 }
