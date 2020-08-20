@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200730015149_changeFloataddedSQLite.cs" />
-    <Compile Remove="Migrations\20200730015149_changeFloataddedSQLite.Designer.cs" />
-    <Compile Remove="Migrations\20200730015821_changeFloattodecimal.cs" />
-    <Compile Remove="Migrations\20200730015821_changeFloattodecimal.Designer.cs" />
+    <Compile Remove="Migrations\20200819033325_changecolumn.cs" />
+    <Compile Remove="Migrations\20200819033325_changecolumn.Designer.cs" />
+    <Compile Remove="Migrations\20200819033359_s.cs" />
+    <Compile Remove="Migrations\20200819033359_s.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

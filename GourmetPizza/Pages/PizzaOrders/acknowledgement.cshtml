@@ -1,0 +1,16 @@
+﻿@page
+@model GourmetPizza.Pages.PizzaOrders.acknowledgementModel
+@{
+}
+
+<h4>You Purchased @TempData["PizzaCount"] @TempData["PizzaName"]</h4>
+
+
+<img src="~/images/@(TempData["PizzaName"]).jpg" />
+
+<h4>
+    Total Price: @(TempData["Price"] + " has been charged to xxxx xxxx xxxx " +
+        TempData["Credit"])
+</h4>
+<h4></h4>
+<h4></h4>

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GourmetPizza.Migrations
 {
     [DbContext(typeof(GourmetPizzaContext))]
-    [Migration("20200818064155_customers")]
-    partial class customers
+    [Migration("20200819035450_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,18 +28,22 @@ namespace GourmetPizza.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FamilyName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("GivenName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Mobile")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PostCode")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("CustomerID");
@@ -54,6 +58,7 @@ namespace GourmetPizza.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
@@ -62,6 +67,27 @@ namespace GourmetPizza.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pizza");
+                });
+
+            modelBuilder.Entity("GourmetPizza.Models.PizzaOrder", b =>
+                {
+                    b.Property<int>("PizzaOrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CreditCardNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PizzaCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PizzaFK")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PizzaOrderID");
+
+                    b.ToTable("PizzaOrder");
                 });
 #pragma warning restore 612, 618
         }

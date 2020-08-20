@@ -34,7 +34,6 @@ namespace GourmetPizza.Pages.Customers
                 customers = customers.Where(s => s.FamilyName.Contains(SearchString) || s.GivenName.Contains(SearchString));
             }
 
-
             Customer = await customers.ToListAsync();
         }
     }
