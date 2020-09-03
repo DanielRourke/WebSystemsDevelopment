@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,10 +12,10 @@ namespace GourmetPizza.Models
         public int Id { get; set; }
 
         [Required]
-        [RegularExpression(@"[A-Za-z\d _]{3,19}", ErrorMessage = "The pizza name " +
+        [RegularExpression(@"[A-Za-z\d _]{3,20}", ErrorMessage = "The pizza name " +
             "field is required, and can only consists of English letters, digits, " +
-            "spaces and underscore, and has a length between 3 characters and 20 " +
-            "characters inclusive.")]
+            "spaces and underscore, and has a length between 3 characters and 22 " +
+            "characters inclusive. Because Chicken and Pineapple")]
         public string Name { get; set; }
 
         [Display(Name = "Price Each")]
