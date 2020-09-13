@@ -14,10 +14,10 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="PizzaOrder.PizzaFK" class="control-label"></label>
-                <select asp-for="PizzaOrder.PizzaFK" class="form-control" asp-items="Model.PizzaNames">
+                <label asp-for="PizzaOrder.PizzaID" class="control-label"></label>
+                <select asp-for="PizzaOrder.PizzaID" class="form-control" asp-items="Model.PizzaNames">
                 </select>
-                <span asp-validation-for="PizzaOrder.PizzaFK" class="text-danger"></span>
+                <span asp-validation-for="PizzaOrder.PizzaID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PizzaOrder.PizzaCount" class="control-label"></label>
@@ -35,6 +35,20 @@
         </form>
     </div>
 </div>
+
+
+@if (ViewData["TotalPrice"] != null)
+{
+    <h4>
+        You Purchased @Model.PizzaOrder.PizzaCount @ViewData["PizzaName"]
+    </h4>
+    <img src="~/images/@(ViewData["PizzaName"]).jpg" />
+    <h4>
+        Total Price: @(ViewData["TotalPrice"] + " has been charged to " +  Model.PizzaOrder.CreditCardNumber)
+    </h4>
+}
+
+
 
 
 @section Scripts {

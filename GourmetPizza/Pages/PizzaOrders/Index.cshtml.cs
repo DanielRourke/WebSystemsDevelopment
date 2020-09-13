@@ -20,57 +20,37 @@ namespace GourmetPizza.Pages.PizzaOrders
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGet()
         {
-            ////Linq query to get pizza names and id
-            var queryPizzaNames = from p in _context.Pizza
-                         select p;
-
-            PizzaNames = new SelectList(await queryPizzaNames.ToListAsync(), "Id" , "Name");
+ 
+            PizzaNames = new SelectList(_context.Pizza, "Id" , "Name");
 
             return Page();
         }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public PizzaOrder PizzaOrder { get; set; }
 
         public SelectList PizzaNames { get; set; }
 
-        [TempData]
-        public string Credit { get; set; }
-
-        [TempData]
-        public string PizzaName { get; set; }
-
-        [TempData]
-        public int PizzaCount { get; set; }
-
-        [TempData]
-        public string Price { get; set; }
-
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            var queryPizza = from p in _context.Pizza
-                             where p.Id == PizzaOrder.PizzaFK
-                             select p;
+
+            PizzaNames = new SelectList(_context.Pizza, "Id", "Name");
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.PizzaOrder.Add(PizzaOrder);
+            var pizza = await _context.Pizza.SingleOrDefaultAsync(p => p.Id == PizzaOrder.PizzaID);
 
-            PizzaCount = PizzaOrder.PizzaCount;
-            PizzaName = queryPizza.Select(x => x.Name).Single();
-            Credit = PizzaOrder.CreditCardNumber.Substring(15);
-            Price = string.Format("{0:C}",PizzaCount * queryPizza.Select(x => x.Price).Single());
+            //Set Pizza Name based on selection
+            ViewData["PizzaName"] = pizza.Name;
+            //Set Total price based on count and pizza price
+            ViewData["TotalPrice"] = string.Format("{0:C}", PizzaOrder.PizzaCount * pizza.Price);
 
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./acknowledgement");
+            return Page();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace GourmetPizza.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [DataType(DataType.PhoneNumber)]
+        //[DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^04[\d]{2} [\d]{3} [\d]{3}$", ErrorMessage = "Phone number" +
             " must be formated 04xx xxx xxx, i.e., there must be 04 followed by 2 digits," +
             "then a space, then 3 digits, then another space and finally 3 digits")]

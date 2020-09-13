@@ -11,12 +11,20 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-<form>
-    <p>
-         Name Contains: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
-    </p>
+<form class="form-inline">
+    <div class="form-group">
+        <label asp-for="SearchString"> Name Contains: &nbsp; &nbsp;</label>
+        <input type="text" asp-for="SearchString" class="form-control">
+    </div>
+    <div>
+        &nbsp; &nbsp;
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Filter" class="btn btn-primary" />
+    </div>
 </form>
+
+<br />
 
 <table class="table">
     <thead>

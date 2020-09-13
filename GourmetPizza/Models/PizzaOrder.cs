@@ -16,17 +16,17 @@ namespace GourmetPizza.Models
         [Required]
         [DisplayName("Select Pizza")]
         [ForeignKey("AuthorFK")]
-        public int PizzaFK { get; set; }
+        public int PizzaID { get; set; }
 
         [Required]
         [DisplayName("Credit Card")]
         [DataType(DataType.CreditCard)]
-        [RegularExpression(@"^\d{4} \d{4} \d{4} \d{4}$", ErrorMessage = "Must be 16 digits in" +
-            " the form xxxx xxxx xxxx xxxx")]
+        [RegularExpression(@"^\d{16}$", ErrorMessage = "Must be 16 digits")]
         public string CreditCardNumber { get; set; }
         
         [Required]
         [Range(1,10, ErrorMessage = "Minimum 1 and Maximum 10")]
         public int PizzaCount { get; set; }
+
     }
 }

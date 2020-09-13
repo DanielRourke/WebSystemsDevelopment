@@ -27,8 +27,8 @@ namespace GourmetPizza.Pages.Customers
 
         public async Task OnGetAsync()
         {
-            var customers = from c in _context.Customer
-                            select c;
+            IQueryable<Customer> customers = _context.Customer; 
+
             if(!string.IsNullOrEmpty(SearchString))
             {
                 customers = customers.Where(s => s.FamilyName.Contains(SearchString) || s.GivenName.Contains(SearchString));
