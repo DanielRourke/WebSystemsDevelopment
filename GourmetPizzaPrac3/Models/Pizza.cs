@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GourmetPizza.Models
+namespace GourmetPizzaPrac3.Models
 {
     public class Pizza
     {
@@ -20,12 +19,11 @@ namespace GourmetPizza.Models
 
         [Display(Name = "Price Each")]
         [DataType(DataType.Currency)]
-        [Range(5.00,20.00, ErrorMessage = "The pizza price should be in the range" +
+        [Range(5.00, 20.00, ErrorMessage = "The pizza price should be in the range" +
             " from $5.00 to $20.00 inclusive.")]
         public decimal Price { get; set; }
 
 
-
-
+        public ICollection<Purchase> ThePurchases;
     }
 }
