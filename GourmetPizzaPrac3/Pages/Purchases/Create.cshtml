@@ -36,15 +36,15 @@
     <h5>
         @if ((string)ViewData["SuccessDB"] == "success")
         {
-        <div>
+        <span>
                 Thanks, you have succesfully purchased
-        </div>         
+        </span>         
         }
         else
         {
-        <div>
+        <span>
                 Sorry, you failed to purchase
-        </div>
+        </span>
         }
         <strong>@Html.DisplayFor(model => model.PurchaseViewModel.PizzaCount)</strong>
         <strong>@Html.DisplayFor(model => model.PurchaseViewModel.Name) </strong>

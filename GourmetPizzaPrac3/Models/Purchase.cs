@@ -10,6 +10,7 @@ namespace GourmetPizzaPrac3.Models
 {
     public class Purchase
     {
+        
         public int ID { get; set; }
 
         public int PizzaID { get; set; }

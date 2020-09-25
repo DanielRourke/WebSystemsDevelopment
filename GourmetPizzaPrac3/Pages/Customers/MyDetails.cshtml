@@ -2,7 +2,10 @@
 @model GourmetPizzaPrac3.Pages.Customers.MyDetailsModel
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<IdentityUser> UserManager
-
+@{
+    ViewData["Title"] = "MyDetails";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
 
 <h4>My Details</h4>
 

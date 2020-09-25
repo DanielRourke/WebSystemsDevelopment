@@ -26,13 +26,10 @@ namespace GourmetPizzaPrac3.Pages.Customers
         [BindProperty]
         public CustomerViewModel CustomerDetails { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync()
         {
-            //get logged on user email
-            //ALSO THROWS NULL IF NO ONE LOGGED IN!!!
             string _email = User.FindFirst(ClaimTypes.Name).Value;
 
-           // string _email = User.FindFirstValue(ClaimTypes.Name);
 
             Customer Customer = await _context.Customer.FirstOrDefaultAsync(m => m.Email == _email);
 
