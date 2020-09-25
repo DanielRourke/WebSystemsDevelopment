@@ -1,0 +1,74 @@
+﻿@page
+@model GourmetPizzaPrac3.Pages.Customers.MyDetailsModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+
+<h4>My Details</h4>
+
+@if ((string)ViewData["ExistInDB"] == "true")
+{
+    <h4>Welcome, @UserManager.GetUserName(User)! You can edit your details below. </h4>
+}
+else if ((string)ViewData["ExistInDB"] == "false")
+{
+    <h4>Welcome, @UserManager.GetUserName(User)! You should enter your details below before browsing other links. </h4>
+}
+else if ((string)ViewData["SuccessDB"] == "success")
+{
+    <h4>Success, @UserManager.GetUserName(User)! Your details have been saved. </h4>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CustomerDetails.FamilyName" class="control-label"></label>
+                <input asp-for="CustomerDetails.FamilyName" class="form-control" />
+                <span asp-validation-for="CustomerDetails.FamilyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerDetails.GivenName" class="control-label"></label>
+                <input asp-for="CustomerDetails.GivenName" class="form-control" />
+                <span asp-validation-for="CustomerDetails.GivenName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerDetails.DateOfBirth" class="control-label"></label>
+                <input asp-for="CustomerDetails.DateOfBirth" class="form-control" />
+                <span asp-validation-for="CustomerDetails.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerDetails.Mobile" class="control-label"></label>
+                <input asp-for="CustomerDetails.Mobile" class="form-control" />
+                <span asp-validation-for="CustomerDetails.Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerDetails.PostCode" class="control-label"></label>
+                <input asp-for="CustomerDetails.PostCode" class="form-control" />
+                <span asp-validation-for="CustomerDetails.PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (ViewData["SuccessDB"] != null)
+{
+    <hr />
+    <h5>
+        Thanks. You have successfully updated your details with your name
+        <strong>@Model.CustomerDetails.FullName</strong>,
+        date of birth <strong>@Html.DisplayFor(model => model.CustomerDetails.DateOfBirth)</strong>,
+        mobile number <strong>@Model.CustomerDetails.Mobile</strong>,
+        and your post code <strong>@Model.CustomerDetails.PostCode</strong>.
+    </h5>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

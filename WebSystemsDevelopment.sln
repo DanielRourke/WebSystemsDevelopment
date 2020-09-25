@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GourmetPizza", "GourmetPizza\GourmetPizza.csproj", "{0DB5982D-8E82-4D50-9DDC-5A41FEC62006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GourmetPizzaPrac3", "GourmetPizzaPrac3\GourmetPizzaPrac3.csproj", "{7C0A648F-5B1E-4CB0-8D38-14D9D21383FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GourmetPizzaPrac3", "GourmetPizzaPrac3\GourmetPizzaPrac3.csproj", "{7C0A648F-5B1E-4CB0-8D38-14D9D21383FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

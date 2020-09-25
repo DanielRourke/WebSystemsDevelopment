@@ -3,46 +3,20 @@ using System;
 using GourmetPizzaPrac3.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GourmetPizzaPrac3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200915092906_scafoldmodels")]
+    partial class scafoldmodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.8");
-
-            modelBuilder.Entity("GourmetPizzaPrac3.Models.Customer", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FamilyName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("GivenName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Mobile")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PostCode")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("Customer");
-                });
 
             modelBuilder.Entity("GourmetPizzaPrac3.Models.Pizza", b =>
                 {
@@ -60,34 +34,6 @@ namespace GourmetPizzaPrac3.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pizza");
-                });
-
-            modelBuilder.Entity("GourmetPizzaPrac3.Models.Purchase", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CustomerEmail")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("PizzaCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PizzaID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CustomerEmail");
-
-                    b.HasIndex("PizzaID");
-
-                    b.ToTable("Purchase");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -284,21 +230,6 @@ namespace GourmetPizzaPrac3.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("GourmetPizzaPrac3.Models.Purchase", b =>
-                {
-                    b.HasOne("GourmetPizzaPrac3.Models.Customer", "TheCustomer")
-                        .WithMany()
-                        .HasForeignKey("CustomerEmail")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GourmetPizzaPrac3.Models.Pizza", "ThePizza")
-                        .WithMany()
-                        .HasForeignKey("PizzaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

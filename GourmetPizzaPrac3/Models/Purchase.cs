@@ -21,6 +21,7 @@ namespace GourmetPizzaPrac3.Models
         [Range(1,80)]
         public int PizzaCount { get; set; }
 
+        [DataType(DataType.Currency)]
         [Range(1.00, 1000.00)]
         public decimal TotalPrice { get; set; }
 

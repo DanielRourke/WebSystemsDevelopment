@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using GourmetPizzaPrac3.Models;
 
 namespace GourmetPizzaPrac3.Data
 {
@@ -12,5 +13,8 @@ namespace GourmetPizzaPrac3.Data
             : base(options)
         {
         }
+        public DbSet<GourmetPizzaPrac3.Models.Pizza> Pizza { get; set; }
+        public DbSet<GourmetPizzaPrac3.Models.Customer> Customer { get; set; }
+        public DbSet<GourmetPizzaPrac3.Models.Purchase> Purchase { get; set; }
     }
 }
