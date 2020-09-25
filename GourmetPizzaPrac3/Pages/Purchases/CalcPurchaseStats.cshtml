@@ -1,0 +1,35 @@
+﻿@page
+@model GourmetPizzaPrac3.Pages.Purchases.CalcPurchaseStatsModel
+@{
+    ViewData["Title"] = "CalcPurchaseStats";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<h2>Purchase Statistics based on PizzaCount</h2>
+<br />
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaCountStats[0].PizzaCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaCountStats[0].PurchaseCount)
+            </th>
+        </tr>
+
+        @foreach (var item in Model.PizzaCountStats)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PizzaCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseCount)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

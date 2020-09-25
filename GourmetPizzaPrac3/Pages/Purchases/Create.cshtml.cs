@@ -9,9 +9,11 @@ using GourmetPizzaPrac3.Data;
 using GourmetPizzaPrac3.Models;
 using System.Security.Claims;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GourmetPizzaPrac3.Pages.Purchases
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly GourmetPizzaPrac3.Data.ApplicationDbContext _context;
@@ -21,15 +23,8 @@ namespace GourmetPizzaPrac3.Pages.Purchases
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGet()
         {
-            string _email = User.FindFirst(ClaimTypes.Name).Value;
-
-            if (_email == null)
-            {
-                //redirect
-            }
-           
             ViewData["PizzaID"] = new SelectList(_context.Pizza, "Id", "Name");
             return Page();
         }
@@ -48,37 +43,30 @@ namespace GourmetPizzaPrac3.Pages.Purchases
 
             string _email = User.FindFirst(ClaimTypes.Name).Value;
 
-
-            if (_email == null)
-            {
-                //redirect
-            }
-
-
-            Purchase Purchase = new Purchase
+            Purchase purchase = new Purchase
             {
                     CustomerEmail = _email,
                     PizzaID = PurchaseViewModel.PizzaID,
-               PizzaCount = PurchaseViewModel.PizzaCount,
+                    PizzaCount = PurchaseViewModel.PizzaCount,
                     TheCustomer = await _context.Customer.FindAsync(_email),
                     ThePizza = await _context.Pizza.FindAsync(PurchaseViewModel.PizzaID)
 
             };
 
-            Purchase.TotalPrice = Purchase.PizzaCount * Purchase.ThePizza.Price;
+            purchase.TotalPrice = purchase.PizzaCount * purchase.ThePizza.Price;
             
-            PurchaseViewModel.TotalPrice = Purchase.PizzaCount * Purchase.ThePizza.Price;
-            PurchaseViewModel.Name = Purchase.ThePizza.Name;
+            PurchaseViewModel.TotalPrice = purchase.PizzaCount * purchase.ThePizza.Price;
+            PurchaseViewModel.Name = purchase.ThePizza.Name;
 
             var results = new List<ValidationResult>();
             
             //validate price ??? do more ??
-            if(!Validator.TryValidateObject(Purchase, new ValidationContext(Purchase), results))
+            if(!Validator.TryValidateObject(purchase, new ValidationContext(purchase), results))
             {
                 return Page();
             }
 
-              _context.Purchase.Add(Purchase);
+              _context.Purchase.Add(purchase);
               await _context.SaveChangesAsync();
             ViewData["SuccessDB"] = "success";
 

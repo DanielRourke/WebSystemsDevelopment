@@ -33,6 +33,9 @@ namespace GourmetPizzaPrac3.Models
         [Display(Name = "Date of Birth")]
         public DateTime DateOfBirth { get; set; }
 
+        [NotMapped] // not mapping this property to database, but exist in memory
+        [Display(Name = "Full Name")]
+        public string FullName => $"{FamilyName} {GivenName}";
 
         //[DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^04[\d]{2} [\d]{3} [\d]{3}$", ErrorMessage = "Phone number" +

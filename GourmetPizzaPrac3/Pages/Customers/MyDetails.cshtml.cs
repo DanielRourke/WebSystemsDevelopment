@@ -9,9 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using GourmetPizzaPrac3.Data;
 using GourmetPizzaPrac3.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GourmetPizzaPrac3.Pages.Customers
 {
+    [Authorize]
     public class MyDetailsModel : PageModel
     {
         private readonly GourmetPizzaPrac3.Data.ApplicationDbContext _context;
