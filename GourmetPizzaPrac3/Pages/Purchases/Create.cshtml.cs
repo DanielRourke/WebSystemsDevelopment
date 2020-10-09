@@ -10,6 +10,7 @@ using GourmetPizzaPrac3.Models;
 using System.Security.Claims;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics.Contracts;
 
 namespace GourmetPizzaPrac3.Pages.Purchases
 {
@@ -26,6 +27,8 @@ namespace GourmetPizzaPrac3.Pages.Purchases
         public IActionResult OnGet()
         {
             ViewData["PizzaID"] = new SelectList(_context.Pizza, "Id", "Name");
+ 
+
             return Page();
         }
 
@@ -36,6 +39,7 @@ namespace GourmetPizzaPrac3.Pages.Purchases
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -53,6 +57,7 @@ namespace GourmetPizzaPrac3.Pages.Purchases
 
             };
 
+            
             purchase.TotalPrice = purchase.PizzaCount * purchase.ThePizza.Price;
             
             PurchaseViewModel.TotalPrice = purchase.PizzaCount * purchase.ThePizza.Price;
